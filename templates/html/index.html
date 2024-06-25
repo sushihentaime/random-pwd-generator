@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Password Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .form-group label, .form-group input[type="checkbox"], .form-group input[type="number"] {
+            vertical-align: middle;
+        }
+        .form-group label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .form-group input[type="number"], .form-group input[type="checkbox"] {
+            display: inline-block;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            margin-top: 20px;
+            text-align: center;
+            color: red;
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Password Generator</h1>
+    <p>Be reminded to store your password using a <a href="https://en.wikipedia.org/wiki/Password_manager">password manager</a> or on a physical book like an expired passport</p>
+    <form action="/" method="POST">
+        <div class="form-group">
+            <label for="length">Length</label>
+            <input type="number" name="length" id="length" value="{{if .Form.Length}}{{.Form.Length}}{{else}}12{{end}}">
+        </div>
+        <div class="form-group">
+            <label for="uppercase">Uppercase</label>
+            <input type="checkbox" name="uppercase" id="uppercase" {{if .Form.Uppercase}}checked{{end}}>
+        </div>
+        <div class="form-group">
+            <label for="lowercase">Lowercase</label>
+            <input type="checkbox" name="lowercase" id="lowercase" {{if .Form.Lowercase}}checked{{end}}>
+        </div>
+        <div class="form-group">
+            <label for="numbers">Numbers</label>
+            <input type="checkbox" name="numbers" id="numbers" {{if .Form.Numbers}}checked{{end}}>
+        </div>
+        <div class="form-group">
+            <label for="symbols">Symbols</label>
+            <input type="checkbox" name="symbols" id="symbols" {{if .Form.Special}}checked{{end}}>
+        </div>
+        <button type="submit">Generate</button>
+    </form>
+    <p >{{.Error}}</p>
+    {{if .Password}}
+        <p style="color: #007bff;">{{.Password}}</p>
+    {{end}}
+</body>
+</html>
